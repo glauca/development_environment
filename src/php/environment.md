@@ -1,5 +1,9 @@
 # PHP开发环境配置 #
 
+## 下载 PHP
+
+[php-5.6.19-Win32-VC11-x64](http://windows.php.net/downloads/releases/php-5.6.19-Win32-VC11-x64.zip)
+
 ## 安装 Git
 
 下载 [Git-2.7.4-64-bit](https://github.com/git-for-windows/git/releases/download/v2.7.4.windows.1/Git-2.7.4-64-bit.exe)
@@ -12,7 +16,7 @@
 
 下载 [vagrant_1.8.1](https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1.msi)
 
-### 配置 Vagrant
+Vagrant 配置
 
 1. vagrant init hashicorp/precise32；
 2. vagrant init laravel/homestead "file://F:/Boxes/homestead-0-2-5-vb.box"
@@ -115,7 +119,7 @@ end
 
 ```
 
-### Laravel
+## Laravel
 
 ```bash
 vagrant init laravel/homestead;
@@ -123,16 +127,66 @@ vagrant up --provider virtualbox
 ```
 
 ```bash
-Laravel Box
-
+下载 [Laravel Box]()
 ```
 
-### Xshell && Xftp
+```bash
+Adding Additional Sites 好用的脚本
+
+#!/usr/bin/env bash
+
+block="server {
+    listen $3;
+    server_name $1;
+    root \"$2\";
+
+    index index.html index.htm index.php;
+
+    charset utf-8;
+
+    location / {
+        try_files \$uri \$uri/ /index.php?\$query_string;
+    }
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location = /robots.txt  { access_log off; log_not_found off; }
+
+    access_log off;
+    error_log  /var/log/nginx/$1-error.log error;
+
+    sendfile off;
+
+    client_max_body_size 100m;
+
+    location ~ \.php$ {
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        fastcgi_pass unix:/var/run/php5-fpm.sock;
+        fastcgi_index index.php;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
+        fastcgi_intercept_errors off;
+        fastcgi_buffer_size 16k;
+        fastcgi_buffers 4 16k;
+    }
+
+    location ~ /\.ht {
+        deny all;
+    }
+}
+"
+
+echo "$block" > "/etc/nginx/sites-available/$1"
+ln -fs "/etc/nginx/sites-available/$1" "/etc/nginx/sites-enabled/$1"
+service nginx restart
+service php5-fpm restart
+```
+
+## Xshell && Xftp
 
 下载 [Xshell](./Xftp4.exe)
 下载 [Xftp](./Xshell4_4.0.0.125.exe)
 
-### Phalcon
+## Phalcon
 
 ```bash
 vagrant init phalconbox53 https://s3-eu-west-1.amazonaws.com/phalcon/phalcon125-apache2-php53-mysql55.box
