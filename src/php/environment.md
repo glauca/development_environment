@@ -113,7 +113,7 @@ Vagrant.configure(2) do |config|
   #   sudo apt-get install -y apache2
   # SHELL
 
-  #config.ssh.private_key_path="F:virtualbox/private_key"
+  # config.ssh.private_key_path="F:/virtualbox/private_key"
 
 end
 
