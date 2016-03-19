@@ -126,9 +126,7 @@ vagrant init laravel/homestead;
 vagrant up --provider virtualbox
 ```
 
-```bash
 下载 [Laravel Box](https://atlas.hashicorp.com/laravel/boxes/homestead/versions/0.2.5/providers/virtualbox.box)
-```
 
 ```bash
 Adding Additional Sites 好用的脚本
