@@ -8,23 +8,23 @@ import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.
 
 1. [JsFormat](https://packagecontrol.io/packages/JsFormat)
 2. [PHPDocument](https://packagecontrol.io/packages/phpDocumentor) && [DocBlockr](https://packagecontrol.io/packages/DocBlockr)
-3. [Trimmer] && [Trailing Spaces]
-4. [Alignment]
+3. [Trimmer](https://packagecontrol.io/packages/Trimmer) && [Trailing Spaces](https://packagecontrol.io/packages/TrailingSpaces)
+4. [Alignment](https://packagecontrol.io/packages/Alignment)
 5. [Git]
 6. [ColorPicker]
-7. [Soda Theme]
-8. [FileDiffs]
+7. [Soda Theme](https://packagecontrol.io/packages/Theme%20-%20Soda) Download [colour-schemes.zip](http://buymeasoda.github.com/soda-theme/extras/colour-schemes.zip)
+8. [FileDiffs](https://packagecontrol.io/packages/FileDiffs)
 9. [phpfmt](https://packagecontrol.io/packages/phpfmt)
-10. [tag]【Ctrl+Alt+F】
-11. [Markdown Preview]【Ctrl+b】
-12. [Emmet]
-13. [html-css-js prettify]【需要node.js】
-14. [Http Requester]
-15. [Golang]
-16. [PHP Getters and Setters]
-17. [PHP Companion]
+10. [tag](https://packagecontrol.io/packages/Tag) 【Ctrl+Alt+F】
+11. [Markdown Preview](https://packagecontrol.io/packages/Markdown%20Preview) 【Ctrl+b】
+12. [Emmet](https://packagecontrol.io/packages/Emmet)
+13. [html-css-js prettify](https://packagecontrol.io/packages/HTML-CSS-JS%20Prettify)【需要node.js】
+14. [Http Requester](https://packagecontrol.io/packages/Http%20Requester)
+15. [Golang](https://packagecontrol.io/packages/GoSublime)
+16. [PHP Getters and Setters](https://packagecontrol.io/packages/PHP%20Getters%20and%20Setters)
+17. [PHP Companion](https://packagecontrol.io/packages/PHP%20Companion)
 
-Sublime Text 3 配置
+Sublime Text 3 Settings - User
 
 ```bash
 {
@@ -55,7 +55,16 @@ Sublime Text 3 配置
 }
 ```
 
-phpfmt 配置项
+Sublime Text 3 Key Bindings - User
+
+```bash
+[
+    { "keys": ["f6"], "command": "find_use" },
+    { "keys": ["f7"], "command": "expand_fqcn" }
+]
+```
+
+phpfmt Settings - User
 
 ```bash
 {
@@ -76,3 +85,18 @@ phpfmt 配置项
 }
 
 ```
+
+Golang Settings - User
+
+```bash
+{
+    "env": {
+        "GOPATH": "F:/git/golang",
+        "GOROOT": "C:/Go"
+    }
+}
+```
+
+# Sublime Text 2 配置文档 #
+
+import urllib2,os; pf='Package Control.sublime-package'; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) if not os.path.exists(ipp) else None; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler( ))); open( os.path.join( ipp, pf), 'wb' ).write( urllib2.urlopen( 'http://sublime.wbond.net/' +pf.replace( ' ','%20' )).read()); print( 'Please restart Sublime Text to finish installation')
