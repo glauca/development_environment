@@ -1,4 +1,4 @@
-### Phalcon
+### Install Phalcon Vagrant
 
 ```bash
 vagrant init phalconbox53 https://s3-eu-west-1.amazonaws.com/phalcon/phalcon125-apache2-php53-mysql55.box
@@ -15,7 +15,7 @@ http://<vagrant-box-ip>/website
 http://<vagrant-box-ip>/invo
 ```
 
-#### Phalcon
+### Install Phalcon Framework
 
 Creating the extension:
 
@@ -50,7 +50,7 @@ Restart the webserver.
 sudo service php5-fpm restart
 ```
 
-#### Phalcon Devtools
+### Install Phalcon Devtools
 
 Installation via Git
 
