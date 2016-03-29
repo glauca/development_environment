@@ -136,3 +136,36 @@ $ git reset --hard [filename]
 撤销对文件的修改
 $ git checkout -- [filename]
 ```
+
+#### 远程仓库使用
+
+查看远程仓库
+```bash
+$ git remove
+$ git remove -v
+$ git remote show origin
+```
+
+添加远程仓库
+```bash
+$ git remote add <shortname> <url>
+$ git remote add pb https://github.com/paulboone/ticgit
+```
+
+从远程仓库中抓取与拉取
+```bash
+$ git fetch [remote-name]
+$ git fetch pb
+```
+
+推送到远程仓库
+```bash
+$ git push [remote-name]
+$ git push origin master
+```
+
+远程仓库的移除与重命名
+```bash
+$ git remote rename pb paul
+$ git remote rm paul
+```
