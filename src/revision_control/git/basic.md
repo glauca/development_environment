@@ -207,3 +207,11 @@ $ git push origin --tags
 ```bash
 $ git checkout -b [branch] [tag]
 ```
+
+#### Git 别名
+```bash
+$ git config --global alias.unstage 'reset HEAD --'
+
+$ git unstage [filename]
+$ git reset HEAD -- [filename]
+```
