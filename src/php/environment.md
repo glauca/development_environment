@@ -48,7 +48,7 @@ VirtualBox bug
 2. Apache EnableSendfile Off
 ```
 
-```bash
+```ruby
 Vagrantfile
 
 # -*- mode: ruby -*-
