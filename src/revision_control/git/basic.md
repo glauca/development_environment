@@ -169,3 +169,41 @@ $ git push origin master
 $ git remote rename pb paul
 $ git remote rm paul
 ```
+
+### git 打标签
+
+列出标签
+```bash
+$ git tag
+$ git tag -l 'v1.8.5'
+```
+
+附注标签
+```bash
+$ git tag -a v1.4 -m 'version 1.4'
+$ git tag
+$ git show v1.4
+```
+
+轻量标签
+```bash
+$ git tag v1.4
+$ git tag
+$ git show v1.4
+```
+
+后期打标签
+```bash
+$ git tag v1.4 [version]
+```
+
+共享标签
+```bash
+$ git push origin [tag]
+$ git push origin --tags
+```
+
+检出标签
+```bash
+$ git checkout -b [branch] [tag]
+```
