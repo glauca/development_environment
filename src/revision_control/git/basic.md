@@ -99,6 +99,7 @@ $ git log -p -1
 $ git log --stat - 1
 
 格式化显示日志
+$ git log -1 --oneline
 $ git log -1 --pretty=oneline
 $ git log -1 --pretty=short
 $ git log -1 --pretty=full
