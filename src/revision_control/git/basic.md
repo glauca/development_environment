@@ -2,14 +2,14 @@
 
 #### 获取 Git 仓库
 
-1. 使用现有项目或目录导入到Git
+使用现有项目或目录导入到Git
 
 ```bash
 $ git init
 $ git add *
 $ git commit -m 'initial'
 ```
-2. 从服务器克隆Git仓库
+从服务器克隆Git仓库
 
 ```bash
 $ git clone [url] [dirname]
@@ -85,4 +85,34 @@ doc/*.txt
 
 # ignore all .pdf files in the doc/ directory
 doc/**/*.pdf
+```
+
+#### git log
+
+```bash
+$ git log
+
+每次提交的内容差异
+$ git log -p -1
+
+每次提交的简略的统计信息
+$ git log --stat - 1
+
+格式化显示日志
+$ git log -1 --pretty=oneline
+$ git log -1 --pretty=short
+$ git log -1 --pretty=full
+$ git log -1 --pretty=fuller
+$ git log -1 --pretty=format:"%h - %an, %ar : %s"
+$ git log -10 --date=format:%c --pretty=format:"%h - %an, %ar %cd %s"
+$ git log -10 --date=format:%c --pretty=format:"%h - %an, %ar %cd %s" --graph
+
+查询条件限制
+$ git log --since=2.weeks
+$ git log --after=2.weeks
+$ git log --before=2.weeks
+$ git log --until=2.weeks
+$ git log --author=[user]
+$ git log --grep=[commit keyword]
+$ git log --all-match=[user || commit keyword]
 ```
