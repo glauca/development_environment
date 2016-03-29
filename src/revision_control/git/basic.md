@@ -116,3 +116,23 @@ $ git log --author=[user]
 $ git log --grep=[commit keyword]
 $ git log --all-match=[user || commit keyword]
 ```
+
+#### git 撤销操作
+
+```bash
+提交完了发现有漏掉的文件没有提交或者提交信息写错了
+$ git commit --amend
+```
+```bash
+取消暂存的文件
+$ git reset HEAD [filename]
+
+危险操作 可能导致工作目录中所有当前进度丢失
+$ git reset --hard [filename]
+
+不加选项地调用 git reset 并不危险 — 它只会修改暂存区域
+```
+```bash
+撤销对文件的修改
+$ git checkout -- [filename]
+```
