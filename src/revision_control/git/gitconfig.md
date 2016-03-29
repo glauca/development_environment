@@ -1,3 +1,5 @@
+### .gitconfig 配置文件
+
 ```bash
 [filter "lfs"]
 	clean = git-lfs clean %f
