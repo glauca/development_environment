@@ -5,6 +5,9 @@
 ### [vimrc](https://github.com/amix/vimrc) #
 
 
-### Vim 快捷键 #
+### Vim 快捷键
 
-### .vimrc #
+### .vimrc
+
+#### [.vimrc](http://pan.baidu.com/s/1cr2tdk)
+#### [Theme](http://pan.baidu.com/s/1dF8rm2P)
