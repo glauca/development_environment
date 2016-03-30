@@ -9,6 +9,6 @@
 
 ### .vimrc
 
-[.vimrc](http://pan.baidu.com/s/1cr2tdk)
+[.vimrc](./vim/.vimrc)
 
-[Theme](http://pan.baidu.com/s/1dF8rm2P)
+[Theme darkburn.vim](./vim/darkburn.vim)
