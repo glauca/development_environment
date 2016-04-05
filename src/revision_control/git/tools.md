@@ -171,3 +171,106 @@ $ git merge -X ours [branch]
 $ git merge -s ours [branch]
 ```
 
+#### Rerere
+
+```bash
+$ git config --global rerere.enabled true
+```
+
+#### 使用 Git 调试
+
+```bash
+$ git blame -L 12,22 [filename]
+$ git blame -C -L 12,22 [filename]
+
+二分查找
+$ git bisect start
+$ git bisect bad
+$ git bisect good v1.0
+$ git bisect good
+$ git bisect bad
+$ git bisect reset
+```
+
+#### 子模块
+
+子模块允许你将一个 Git 仓库作为另一个 Git 仓库的子目录。它能让你将另一个仓库克隆到自己的项目中，同时还保持提交的独立。
+
+```bash
+开始使用子模块
+$ git submodule add https://github.com/chaconinc/DbConnector
+
+$ git diff --cached DbConnector
+$ git diff --cached --submodule
+$ git commit -am 'added DbConnector module'
+
+克隆含有子模块的项目
+默认会包含该子模块目录，但其中没有任何文件
+$ git clone https://github.com/chaconinc/MainProject
+$ git submodule init
+$ git submodule update
+
+==
+
+$ git clone --recursive https://github.com/chaconinc/MainProject
+
+在包含子模块的项目上工作
+进入子模块然后抓取 默认更新子模块仓库的 master 分支
+$ git submodule update --remote DbConnector
+
+$ git submodule update --remote --merge
+
+$ git submodule update --remote --rebase
+
+发布子模块改动
+$ git push --recurse-submodules=check
+$ git push --recurse-submodules=on-demand
+```
+[子模块](https://git-scm.com/book/en/v2/Git-Tools-Submodules)
+
+
+#### 打包
+
+````bash
+$ git bundle create repo.bundle HEAD master
+
+$ git clone repo.bundle repo
+
+查看做了哪些更改
+$ git log --oneline master ^origin/master
+创建新的包文件
+$ git bundle create commits.bundle master ^9a466c5
+验证并导入新包文件
+$ git bundle verify ../commits.bundle
+
+查看包里可以导入哪些分支
+$ git bundle list-heads ../commits.bundle
+
+从包中取出 master 分支到我们仓库中的 other-master 分支
+$ git fetch ../commits.bundle master:other-master
+````
+
+#### 替换
+
+#### 凭证存储
+
+Git 拥有处理凭证系统来的一些选项：
+
++ 默认所有都不缓存。 每一次连接都会询问你的用户名和密码。
+
++ “cache” 模式会将凭证存放在内存中一段时间。 密码永远不会被存储在磁盘中，并且在15分钟后从内存中清除。
+
++ “store” 模式会将凭证用明文的形式存放在磁盘中，并且永不过期。 这意味着除非你修改了你在 Git 服务器上的密码，否则你永远不需要再次输入你的凭证信息。 这种方式的缺点是你的密码是用明文的方式存放在你的 home 目录下。
+
++ 如果你使用的是 Mac，Git 还有一种 “osxkeychain” 模式，它会将凭证缓存到你系统用户的钥匙串中。 这种方式将凭证存放在磁盘中，并且永不过期，但是是被加密的，这种加密方式与存放 HTTPS 凭证以及 Safari 的自动填写是相同的。
+
++ 如果你使用的是 Windows，你可以安装一个叫做 “winstore” 的辅助工具。 这和上面说的 “osxkeychain” 十分类似，但是是使用 Windows Credential Store 来控制敏感信息。 可以在 [https://gitcredentialstore.codeplex.com](https://gitcredentialstore.codeplex.com) 下载。
+
+```bash
+$ git config --global credential.helper cache
+$ git config --global credential.helper store --file ~/.my-credentials
+
+[credential]
+    helper = store --file /mnt/thumbdrive/.git-credentials
+    helper = cache --timeout 30000
+```
