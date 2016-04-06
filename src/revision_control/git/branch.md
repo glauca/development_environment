@@ -87,6 +87,13 @@ $ git branch -vv
 $ git push origin --delete [branch name]
 ```
 
+#### 重命名远程分支
+```bash
+$ git push --delete origin [branch]
+$ git branch -m [branch] [new branch]
+$ git push origin [new branch]
+```
+
 #### 变基
 ```bash
 $ git checkout develop
