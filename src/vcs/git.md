@@ -9,4 +9,5 @@
 5. [Git 分布式](./git/distributed.md)
 6. [Github](./git/github.md)
 7. [Git 工具](./git/tools.md)
-7. [自定义 Git](./git/custom.md)
+8. [自定义 Git](./git/custom.md)
+9. [Git 与其他系统](./git/system.md)

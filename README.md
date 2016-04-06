@@ -17,4 +17,4 @@
 
 ### 版本控制
 
-#### [Git](./src/revision_control/git.md)
+#### [Git](./src/vcs/git.md)
