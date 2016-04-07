@@ -5,6 +5,10 @@
 ### [vimrc](https://github.com/amix/vimrc) #
 
 
-### Vim 快捷键 #
+### Vim 快捷键
 
-### .vimrc #
+### .vimrc
+
+[.vimrc](./vim/.vimrc)
+
+[Theme darkburn.vim](./vim/darkburn.vim)

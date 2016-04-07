@@ -7,6 +7,8 @@ vagrant up --provider virtualbox
 
 下载 [Laravel Box](https://atlas.hashicorp.com/laravel/boxes/homestead/versions/0.2.5/providers/virtualbox.box)
 
+下载 [homestead-0-2-5-vb.box](http://pan.baidu.com/s/1ge9YMHl)
+
 ```bash
 Adding Additional Sites 好用的脚本
 
