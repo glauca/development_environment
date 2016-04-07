@@ -11,3 +11,4 @@
 7. [Git 工具](./git/tools.md)
 8. [自定义 Git](./git/custom.md)
 9. [Git 与其他系统](./git/peer.md)
+9. [Git 内部原理](./git/fundamental.md)
