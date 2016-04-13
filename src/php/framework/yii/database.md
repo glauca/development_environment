@@ -32,7 +32,7 @@ return [
 ];
 ~~~
 
-Sometimes you may want to execute some queries right after the database connection is established to initialize some environment variables (e.g., to set the timezone or character set). 
+Sometimes you may want to execute some queries right after the database connection is established to initialize some environment variables (e.g., to set the timezone or character set).
 ~~~php
 'db' => [
     // ...
@@ -314,6 +314,202 @@ $table = Yii::$app->db->getTableSchema('post');
 ~~~
 
 ### Query Builder
+
+~~~php
+$rows = (new \yii\db\Query())
+    ->select(['id', 'email'])
+    ->from('user')
+    ->where(['last_name' => 'Smith'])
+    ->limit(10)
+    ->all();
+~~~
+
+##### Building Queries
+
+select()
+~~~php
+$query->select(['user.id AS user_id', 'email']);
+
+// equivalent to:
+
+$query->select('user.id AS user_id, email');
+$query->select(['user_id' => 'user.id', 'email']);
+
+$query->select(["CONCAT(first_name, ' ', last_name) AS full_name", 'email']);
+
+// Starting from version 2.0.1, you may also select sub-queries.
+$subQuery = (new Query())->select('COUNT(*)')->from('user');
+
+// SELECT `id`, (SELECT COUNT(*) FROM `user`) AS `count` FROM `post`
+$query = (new Query())->select(['id', 'count' => $subQuery])->from('post');
+~~~
+
+from()
+~~~php
+// SELECT * FROM `user`
+$query->from('user');
+
+$query->from(['public.user u', 'public.post p']);
+
+// equivalent to:
+
+$query->from('public.user u, public.post p');
+$query->from(['u' => 'public.user', 'p' => 'public.post']);
+
+// Besides table names, you can also select from sub-queries by specifying them in terms of yii\db\Query objects.
+$subQuery = (new Query())->select('id')->from('user')->where('status=1');
+
+// SELECT * FROM (SELECT `id` FROM `user` WHERE status=1) u
+$query->from(['u' => $subQuery]);
+~~~
+
+where()
++ string format, e.g., 'status=1'
++ hash format, e.g. ['status' => 1, 'type' => 2]
++ operator format, e.g. ['like', 'name', 'test']
+~~~php
+$query->where('status=1');
+
+// or use parameter binding to bind dynamic parameter values
+$query->where('status=:status', [':status' => $status]);
+
+// raw SQL using MySQL YEAR() function on a date field
+$query->where('YEAR(somedate) = 2015');
+
+$query->where('status=:status')
+    ->addParams([':status' => $status]);
+
+
+// ...WHERE (`status` = 10) AND (`type` IS NULL) AND (`id` IN (4, 8, 15))
+$query->where([
+    'status' => 10,
+    'type' => null,
+    'id' => [4, 8, 15],
+]);
+
+$userQuery = (new Query())->select('id')->from('user');
+
+// ...WHERE `id` IN (SELECT `id` FROM `user`)
+$query->where(['id' => $userQuery]);
+
+$status = 10;
+$search = 'yii';
+
+$query->where(['status' => $status]);
+
+if (!empty($search)) {
+    $query->andWhere(['like', 'title', $search]);
+}
+
+// $username and $email are from user inputs
+$query->filterWhere([
+    'username' => $username,
+    'email' => $email,
+]);
+~~~
+
+Operator Format
++ ['and', 'id=1', 'id=2']
++ ['between', 'id', 1, 10]
++ ['in', 'id', [1, 2, 3]]
++ ['like', 'name', ['test', 'sample']]
+
+orderBy() groupBy() having() limit() and offset()
+~~~php
+// ... ORDER BY `id` ASC, `name` DESC
+$query->orderBy([
+    'id' => SORT_ASC,
+    'name' => SORT_DESC,
+]);
+
+// ... GROUP BY `id`, `status`
+$query->groupBy(['id', 'status']);
+
+$query->groupBy(['id', 'status'])
+    ->addGroupBy('age');
+
+// ... HAVING (`status` = 1) AND (`age` > 30)
+$query->having(['status' => 1])
+    ->andHaving(['>', 'age', 30]);
+
+// ... LIMIT 10 OFFSET 20
+$query->limit(10)->offset(20);
+~~~
+
+join() union()
+~~~php
+$query->join('LEFT JOIN', 'post', 'post.user_id = user.id');
+$query->leftJoin('post', 'post.user_id = user.id');
+
+$query1 = (new \yii\db\Query())
+    ->select("id, category_id AS type, name")
+    ->from('post')
+    ->limit(10);
+
+$query2 = (new \yii\db\Query())
+    ->select('id, type, name')
+    ->from('user')
+    ->limit(10);
+
+$query1->union($query2);
+~~~
+
+##### Query Methods
+
++ all(): returns an array of rows with each row being an associative array of name-value pairs.
++ one(): returns the first row of the result.
++ column(): returns the first column of the result.
++ scalar(): returns a scalar value located at the first row and first column of the result.
++ exists(): returns a value indicating whether the query contains any result.
++ count(): returns the result of a COUNT query.
+
+~~~php
+// SELECT `id`, `email` FROM `user`
+$rows = (new \yii\db\Query())
+    ->select(['id', 'email'])
+    ->from('user')
+    ->all();
+
+// SELECT * FROM `user` WHERE `username` LIKE `%test%`
+$row = (new \yii\db\Query())
+    ->from('user')
+    ->where(['like', 'username', 'test'])
+    ->one();
+
+// executes SQL: SELECT COUNT(*) FROM `user` WHERE `last_name`=:last_name
+$count = (new \yii\db\Query())
+    ->from('user')
+    ->where(['last_name' => 'Smith'])
+    ->count();
+
+$command = (new \yii\db\Query())
+    ->select(['id', 'email'])
+    ->from('user')
+    ->where(['last_name' => 'Smith'])
+    ->limit(10)
+    ->createCommand();
+
+// show the SQL statement
+echo $command->sql;
+// show the parameters to be bound
+print_r($command->params);
+
+// returns all rows of the query result
+$rows = $command->queryAll();
+
+// returns [100 => ['id' => 100, 'username' => '...', ...], 101 => [...], 103 => [...], ...]
+$query = (new \yii\db\Query())
+    ->from('user')
+    ->limit(10)
+    ->indexBy('id')
+    ->all();
+
+$query = (new \yii\db\Query())
+    ->from('user')
+    ->indexBy(function ($row) {
+        return $row['id'] . $row['username'];
+    })->all();
+~~~
 
 ### Active Record
 
