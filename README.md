@@ -11,7 +11,7 @@
 
 ### PHP Framework
 
-#### [Yii 2.0](./src/php/framework/yii.md)
+#### [Yii 2.0](./src/php/framework/yii/README.md)
 #### [Laravel](./src/php/framework/laravel.md)
 #### [Phalcon](./src/php/framework/phalcon.md)
 
