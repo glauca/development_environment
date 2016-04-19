@@ -1,7 +1,7 @@
 ## The Definitive Guide to Yii 2.0
 
 1. Introduction
-1. Getting Started
+1. [Getting Started](./start.md)
 1. Application Structure
 1. Handling Requests
 1. Key Concepts
