@@ -23,6 +23,7 @@ import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.
 15. [Golang](https://packagecontrol.io/packages/GoSublime)
 16. [PHP Getters and Setters](https://packagecontrol.io/packages/PHP%20Getters%20and%20Setters)
 17. [PHP Companion](https://packagecontrol.io/packages/PHP%20Companion)
+18. [OmniMarkupPreviewer](https://packagecontrol.io/packages/OmniMarkupPreviewer)
 
 Sublime Text 3 Settings - User
 
