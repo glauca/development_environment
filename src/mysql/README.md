@@ -12,7 +12,7 @@
 1. Globalization
 1. Data Types
 1. Functions and Operators
-1. SQL Statement Syntax
+1. [SQL Statement Syntax](./13/README.md)
 1. The InnoDB Storage Engine
 1. Alternative Storage Engines
 1. High Availability and Scalability
