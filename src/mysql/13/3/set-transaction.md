@@ -69,13 +69,15 @@ InnoDB支持全部事务隔离级别。默认级别是 `REPEATABLE READ` [`ACID`
 
 InnoDB 默认的级别。[consistent reads](http://dev.mysql.com/doc/refman/5.6/en/glossary.html#glos_consistent_read) && [Section 14.3.4, “Consistent Nonlocking Reads”](http://dev.mysql.com/doc/refman/5.6/en/innodb-consistent-read.html)
 
-For locking reads (SELECT with FOR UPDATE or LOCK IN SHARE MODE), UPDATE, and DELETE statements, locking depends on whether the statement uses a unique index with a unique search condition, or a range-type search condition. For a unique index with a unique search condition, InnoDB locks only the index record found, not the gap before it. For other search conditions, InnoDB locks the index range scanned, using gap locks or next-key locks to block insertions by other sessions into the gaps covered by the range. 
+For locking reads (SELECT with FOR UPDATE or LOCK IN SHARE MODE), UPDATE, and DELETE statements, locking depends on whether the statement uses a unique index with a unique search condition, or a range-type search condition. For a unique index with a unique search condition, InnoDB locks only the index record found, not the gap before it. For other search conditions, InnoDB locks the index range scanned, using gap locks or next-key locks to block insertions by other sessions into the gaps covered by the range.
 
 + READ COMMITTED
 + READ UNCOMMITTED
 + SERIALIZABLE
 
 > For additional information about isolation levels and InnoDB transactions, see [Section 14.3, “InnoDB Transaction Model and Locking”](http://dev.mysql.com/doc/refman/5.6/en/innodb-transaction-model.html).
+
+> [MySQL数据库事务隔离级别(Transaction Isolation Level)](http://www.cnblogs.com/zemliu/archive/2012/06/17/2552301.html)
 
 #### Transaction Access Mode
 
