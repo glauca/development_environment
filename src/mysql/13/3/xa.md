@@ -1,7 +1,7 @@
 ## [13.3.7 XA Transactions](http://dev.mysql.com/doc/refman/5.6/en/xa.html)
 
-+ [XA Transaction SQL Syntax](http://dev.mysql.com/doc/refman/5.6/en/xa-statements.html)
-+ [XA Transaction States](http://dev.mysql.com/doc/refman/5.6/en/xa-states.html)
++ [XA Transaction SQL Syntax](./7/xa-statements.html)
++ [XA Transaction States](./7/xa-states.html)
 
 InnoDB 支持[XA](http://dev.mysql.com/doc/refman/5.6/en/glossary.html#glos_xa)事务。
 
@@ -26,5 +26,5 @@ The process for executing a global transaction uses two-phase commit (2PC). This
 
 1. In the first phase, all branches are prepared. That is, they are told by the TM to get ready to commit. Typically, this means each RM that manages a branch records the actions for the branch in stable storage. The branches indicate whether they are able to do this, and these results are used for the second phase.
 
-2. In the second phase, the TM tells the RMs whether to commit or roll back. If all branches indicated when they were prepared that they will be able to commit, all branches are told to commit. If any branch indicated when it was prepared that it will not be able to commit, all branches are told to roll back. 
+2. In the second phase, the TM tells the RMs whether to commit or roll back. If all branches indicated when they were prepared that they will be able to commit, all branches are told to commit. If any branch indicated when it was prepared that it will not be able to commit, all branches are told to roll back.
 
