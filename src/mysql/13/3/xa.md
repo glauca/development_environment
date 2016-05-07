@@ -1,7 +1,7 @@
 ## [13.3.7 XA Transactions](http://dev.mysql.com/doc/refman/5.6/en/xa.html)
 
-+ [XA Transaction SQL Syntax](./7/xa-statements.html)
-+ [XA Transaction States](./7/xa-states.html)
++ [XA Transaction SQL Syntax](./7/xa-statements.md)
++ [XA Transaction States](./7/xa-states.md)
 
 InnoDB 支持[XA](http://dev.mysql.com/doc/refman/5.6/en/glossary.html#glos_xa)事务。
 
