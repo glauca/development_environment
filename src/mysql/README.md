@@ -7,7 +7,7 @@
 1. MySQL Server Administration
 1. Security
 1. Backup and Recovery
-1. Optimization
+1. [Optimization](./8/README.md)
 1. Language Structure
 1. Globalization
 1. Data Types

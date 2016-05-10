@@ -1,0 +1,3 @@
+## [8.8.4 Estimating Query Performance](http://dev.mysql.com/doc/refman/5.6/en/estimating-performance.html)
+
+After the data gets too big to be cached, things start to go much slower until your applications are bound only by disk seeks (which increase by log N). To avoid this, increase the key cache size as the data grows. For `MyISAM` tables, the key cache size is controlled by the `key_buffer_size` system variable.

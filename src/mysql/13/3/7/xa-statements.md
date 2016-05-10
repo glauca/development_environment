@@ -30,7 +30,7 @@ xid: gtrid [, bqual [, formatID ]]
 
 To be safe, write gtrid and bqual as hex strings.
 
-XA RECOVER output rows look like this (for an example xid value consisting of the parts 'abc', 'def', and 7):
+`XA RECOVER` output rows look like this (for an example xid value consisting of the parts 'abc', 'def', and 7):
 
 ~~~mysql
 mysql> XA RECOVER;
