@@ -63,7 +63,7 @@ SET SESSION tx_isolation='SERIALIZABLE';
 
 #### Details and Usage of Isolation Levels
 
-InnoDB支持全部事务隔离级别。默认级别是 `REPEATABLE READ` [`ACID`](http://dev.mysql.com/doc/refman/5.6/en/glossary.html#glos_acid)。最高等级是 `REPEATABLE READ` ，使用在特定场合，如[XA](http://dev.mysql.com/doc/refman/5.6/en/glossary.html#glos_xa)
+InnoDB支持全部事务隔离级别。默认级别是 `REPEATABLE READ` [`ACID`](http://dev.mysql.com/doc/refman/5.6/en/glossary.html#glos_acid)。最高等级是 `SERIALIZABLE` ，使用在特定场合，如[XA](http://dev.mysql.com/doc/refman/5.6/en/glossary.html#glos_xa)
 
 + REPEATABLE READ
 
