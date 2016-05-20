@@ -1,0 +1,1 @@
+## [8.8.3 EXPLAIN EXTENDED Output Format](http://dev.mysql.com/doc/refman/5.6/en/explain-extended.html)
