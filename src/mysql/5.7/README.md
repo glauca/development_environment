@@ -1,7 +1,7 @@
 ## MySQL 5.7 Reference Manual
 
 1. [General Information](./introduction/introduction.md)
-1. Installing and Upgrading MySQL
+1. [Installing and Upgrading MySQL](./2/README.md)
 1. Using MySQL as a Document Store
 1. Tutorial
 1. MySQL Programs
