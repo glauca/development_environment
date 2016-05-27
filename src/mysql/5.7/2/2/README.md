@@ -18,6 +18,8 @@ shell> apt-get install libaio1 # install library
 
 ![MySQL Installation Layout for Generic Unix/Linux Binary Package](./mysql_installation_layout.png)
 
+[Download mysql-5.7.12-linux-glibc2.5-x86_64.tar.gz](http://cdn.mysql.com//Downloads/MySQL-5.7/mysql-5.7.12-linux-glibc2.5-x86_64.tar.gz)
+
 ~~~bash
 shell> groupadd mysql
 shell> useradd -r -g mysql -s /bin/false mysql
