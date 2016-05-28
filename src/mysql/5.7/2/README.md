@@ -9,7 +9,7 @@
 7. Installing MySQL on Solaris and OpenSolaris
 8. Installing MySQL on FreeBSD
 9. Installing MySQL from Source
-10. Postinstallation Setup and Testing
+10. [Postinstallation Setup and Testing](./10/README.md)
 11. Upgrading or Downgrading MySQL
 12. Environment Variables
 13. Perl Installation Notes

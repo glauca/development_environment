@@ -41,4 +41,4 @@ shell> bin/mysqld_safe --user=mysql &
 shell> cp support-files/mysql.server /etc/init.d/mysql.server
 ~~~
 
-> Because the user is required only for ownership purposes, **not login purposes**, the **useradd** command uses the -r and -s */bin/false* options to create a user that does not have login permissions to your server host. Omit these options if your **useradd** does not support them.
+> 使用 **useradd** 命令的 -r 和 -s */bin/false* 选项创建一个不用登陆的账号。如果 **useradd** 不支持这些选项，可以省略。
