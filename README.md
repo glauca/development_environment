@@ -21,4 +21,5 @@
 
 ### 数据库
 
-#### [MySQL 5.6](./src/mysql/5.6/README.md)
+#### [MySQL 5.6 deprecated](./src/mysql/5.6/README.md)
+#### [MySQL 5.7](./src/mysql/5.7/README.md)
