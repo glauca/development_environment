@@ -1,4 +1,4 @@
-## MySQL 5.7 Reference Manual
+## [MySQL 5.7 Reference Manual](http://dev.mysql.com/doc/refman/5.7/en/)
 
 1. [General Information](./introduction/introduction.md)
 1. [Installing and Upgrading MySQL](./2/README.md)

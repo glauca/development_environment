@@ -3,8 +3,8 @@
 1. Initializing the Data Directory
 2. Starting the Server
 3. Testing the Server
-4. Securing the Initial MySQL Accounts
-5. Starting and Stopping MySQL Automatically
+4. [Securing the Initial MySQL Accounts]()
+5. [Starting and Stopping MySQL Automatically]()
 
 二进制包和源代码包，必须手动初始化数据目录。[Section 2.10.1, “Initializing the Data Directory”](http://dev.mysql.com/doc/refman/5.7/en/data-directory-initialization.html)
 
