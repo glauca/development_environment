@@ -5,5 +5,5 @@
 3. Creating and Using a Database
 4. Getting Information About Databases and Tables
 5. Using mysql in Batch Mode
-6. [Examples of Common Queries](./6.README.md)
+6. [Examples of Common Queries](./6/README.md)
 7. [Using MySQL with Apache](./7/README.md)
