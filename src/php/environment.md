@@ -2,19 +2,33 @@
 
 ## 下载 PHP
 
-[php-5.6.19-Win32-VC11-x64](http://windows.php.net/downloads/releases/php-5.6.19-Win32-VC11-x64.zip)
++ PHP
+    - [php-5.6.19-Win32-VC11-x64](http://windows.php.net/downloads/releases/php-5.6.19-Win32-VC11-x64.zip)
 
 ## 安装 Git
 
-下载 [Git-2.7.4-64-bit](https://github.com/git-for-windows/git/releases/download/v2.7.4.windows.1/Git-2.7.4-64-bit.exe)
++ Git
+    - [Git-2.7.4-64-bit](https://github.com/git-for-windows/git/releases/download/v2.7.4.windows.1/Git-2.7.4-64-bit.exe)
 
 ## 安装 Virtualbox
 
-下载 [VirtualBox-4.3.4-91027-Win](http://download.virtualbox.org/virtualbox/4.3.4/VirtualBox-4.3.4-91027-Win.exe)
++ Virtualbox
+    - [VirtualBox-4.3.4-91027-Win](http://download.virtualbox.org/virtualbox/4.3.4/VirtualBox-4.3.4-91027-Win.exe)
+    - [VirtualBox-5.0.22-108108-Win](http://download.virtualbox.org/virtualbox/5.0.22/VirtualBox-5.0.22-108108-Win.exe)
 
 ## 安装 Vagrant
 
-下载 [vagrant_1.8.1](https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1.msi)
++ vagrant
+    - [vagrant_1.8.1](https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1.msi)
+    - [vagrant_1.8.4](https://releases.hashicorp.com/vagrant/1.8.4/vagrant_1.8.4.msi)
++ homestead
+    - [homestead 0.2.5](https://atlas.hashicorp.com/laravel/boxes/homestead/versions/0.2.5/providers/virtualbox.box)
+    - [homestead 0.4.4](https://atlas.hashicorp.com/laravel/boxes/homestead/versions/0.4.4/providers/virtualbox.box)
+    - [homestead-7 0.2.1](https://atlas.hashicorp.com/laravel/boxes/homestead-7/versions/0.2.1/providers/virtualbox.box)
+
+[Vagrant is attempting to interface with the UI in a way that requires a TTY]
+
+`export VAGRANT_DETECTED_OS=cygwin`
 
 Vagrant 配置
 
