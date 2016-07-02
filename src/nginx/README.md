@@ -142,15 +142,25 @@ server {
 ~~~nginx
 http {
     upstream myapp1 {
+        # Use NGINX shared memory
+        zone backend 64k;
+
         # distributing the new requests to a less busy server
         least_conn;
+
+        # maintain a maximum of 20 idle connections to each upstream server
+        keepalive 20;
+
+        # Apply session persistence for this upstream group
+        sticky cookie srv_id expires=1h domain=.example.com path=/servlet;
 
         # the same client will always be directed to the same server
         ip_hash;
 
         server srv1.example.com weight=3;
-        server srv2.example.com;
+        server srv2.example.com slow_start=30s;
         server srv3.example.com;
+
     }
 
     server {
@@ -158,6 +168,40 @@ http {
 
         location / {
             proxy_pass http://myapp1;
+
+            health_check interval=2s fails=1 passes=5 uri=/test.php match=statusok;
+
+            proxy_http_version 1.1;
+            proxy_set_header Connection "";
+            proxy_set_header Accept-Encoding "";
+            proxy_redirect http://staging.example.com/ http://$host/;
+
+            # Rewrite the 'Host' header to the value in the client request,
+            # or primary server name
+            proxy_set_header Host $host;
+
+            # Alternatively, put the value in the config:
+            # proxy_set_header Host www.example.com;
+
+            # Replace any references inline to staging.example.com
+            sub_filter http://staging.example.com/ /;
+            sub_filter_once off;
+        }
+    }
+
+    match statusok {
+        # Used for /test.php health check
+        status 200;
+        header Content-Type = text/html;
+        body ~ "Server[0-9]+ is alive";
+    }
+
+    server {
+        listen 8080;
+        root /usr/share/nginx/html;
+
+        location = /status {
+            status; # Live activity monitoring
         }
     }
 }
