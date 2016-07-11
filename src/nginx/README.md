@@ -34,15 +34,17 @@
 --with-pcre-jit
 ~~~
 
-### Nginx 配置
+### Nginx 通用配置
 
 ~~~nginx
 user nginx nginx;
 worker_processes 4;
 
+pid logs/nginx.pid;
+
 events {
-    worker_connections 768;
-    # multi_accept on;
+    use epoll;
+    worker_connections 65535;
 }
 
 http {
@@ -50,32 +52,35 @@ http {
     # Basic Settings
     ##
 
+    include mime.types;
+    default_type application/octet-stream;
+    charset utf-8;
+
     sendfile on;
-    tcp_nopush on;
     tcp_nodelay on;
+    tcp_nopush on;
     keepalive_timeout 65;
     types_hash_max_size 2048;
-    # server_tokens off;
-
-    server_names_hash_bucket_size 64;
-    # server_name_in_redirect off;
-
-    include /etc/nginx/mime.types;
-    default_type application/octet-stream;
+    server_tokens off;
 
     ##
-    # SSL Settings
+    # http_header设置
     ##
 
-    ssl_protocols TLSv1 TLSv1.1 TLSv1.2; # Dropping SSLv3, ref: POODLE
-    ssl_prefer_server_ciphers on;
+    client_header_buffer_size 32k;
+    large_client_header_buffers 4 32k;
+
+    server_names_hash_bucket_size 128;
 
     ##
     # Logging Settings
     ##
 
-    access_log /var/log/nginx/access.log;
-    error_log /var/log/nginx/error.log;
+    #access_log /var/log/nginx/access.log;
+    #error_log /var/log/nginx/error.log; # debug, info, notice, warn, error, crit, alert, or emerg
+
+    error_page 404             /404.html;
+    error_page 500 502 503 504 /50x.html;
 
     ##
     # Gzip Settings
@@ -92,14 +97,21 @@ http {
     # gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
 
     ##
+    # SSL Settings
+    ##
+
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2; # Dropping SSLv3, ref: POODLE
+    ssl_prefer_server_ciphers on;
+
+    ##
     # Virtual Host Configs
     ##
 
-    include /etc/nginx/conf.d/*;
+    include /etc/nginx/conf.d/sites-available/*;
 }
 ~~~
 
-### 普通配置
+### 普通 Server 配置
 
 [Server names](http://nginx.org/en/docs/http/server_names.html)
 
