@@ -22,6 +22,7 @@
 --with-http_secure_link_module
 --with-http_stub_status_module
 --with-http_auth_request_module
+--with-http_image_filter_module
 --with-threads
 --with-stream
 --with-stream_ssl_module
@@ -76,8 +77,12 @@ http {
     # Logging Settings
     ##
 
-    #access_log /var/log/nginx/access.log;
-    #error_log /var/log/nginx/error.log; # debug, info, notice, warn, error, crit, alert, or emerg
+    log_format compression '$remote_addr - $remote_user [$time_local] '
+                           '"$request" $status $bytes_sent '
+                           '"$http_referer" "$http_user_agent" "$gzip_ratio"';
+
+    access_log /var/log/nginx/$host-access.log compression buffer=32k flush=1d;
+    error_log /var/log/nginx/$host-error.log; # debug, info, notice, warn, error, crit, alert, or emerg
 
     error_page 404             /404.html;
     error_page 500 502 503 504 /50x.html;
@@ -89,12 +94,28 @@ http {
     gzip on;
     gzip_disable "msie6";
 
-    # gzip_vary on;
-    # gzip_proxied any;
-    # gzip_comp_level 6;
-    # gzip_buffers 16 8k;
-    # gzip_http_version 1.1;
-    # gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
+    gzip_vary on;
+    gzip_proxied any;
+    gzip_comp_level 6;
+    gzip_buffers 16 8k;
+    gzip_http_version 1.0;
+    gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
+
+    ##
+    # Static resource
+    ##
+
+    location = /empty.gif {
+        empty_gif;
+    }
+
+    location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$ {
+        expires 30d;
+    }
+
+    location ~ .*\.(js|css)?$ {
+        expires 1h;
+    }
 
     ##
     # SSL Settings
@@ -108,6 +129,18 @@ http {
     ##
 
     include /etc/nginx/conf.d/sites-available/*;
+
+    ##
+    # 防盗链
+    # ngx_http_referer_module
+    # ngx_http_secure_link_module
+    ##
+
+    ##
+    # 限制连接
+    # ngx_http_limit_conn_module
+    # ngx_http_limit_req_module
+    ##
 }
 ~~~
 
@@ -128,7 +161,7 @@ server {
     root        /data/www;
 
     location / {
-        index   index.html index.php;
+        index index.html index.php;
     }
 
     location ~* \.(gif|jpg|png)$ {
