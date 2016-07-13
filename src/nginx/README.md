@@ -218,7 +218,7 @@ server {
 
 ~~~nginx
 http {
-    upstream myapp1 {
+    upstream backend {
         # Use NGINX shared memory
         zone backend 64k;
 
@@ -226,25 +226,27 @@ http {
         least_conn;
 
         # maintain a maximum of 20 idle connections to each upstream server
-        keepalive 20;
+        # For FastCGI servers, it is required to set fastcgi_keep_conn for keepalive connections to work
+        #keepalive 20;
 
         # Apply session persistence for this upstream group
-        sticky cookie srv_id expires=1h domain=.example.com path=/servlet;
+        #sticky cookie srv_id expires=1h domain=.example.com path=/servlet;
 
         # the same client will always be directed to the same server
-        ip_hash;
+        #ip_hash;
 
         server srv1.example.com weight=3;
-        server srv2.example.com slow_start=30s;
-        server srv3.example.com;
-
+        server srv2.example.com weight=7;
+        server srv3.example.com backup down;
+        server 127.0.0.1:8080 max_fails=3 fail_timeout=15s;
+        #server unix:/tmp/backend slow_start=30s;
     }
 
     server {
         listen 80;
 
         location / {
-            proxy_pass http://myapp1;
+            proxy_pass http://backend;
 
             health_check interval=2s fails=1 passes=5 uri=/test.php match=statusok;
 
