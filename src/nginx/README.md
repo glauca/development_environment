@@ -2,6 +2,11 @@
 
 ### Installing nginx
 
+~~~bash
+yum -y install gcc gcc-c++ autoconf automake
+yum -y install zlib zlib-devel openssl openssl-devel pcre pcre-devel
+~~~
+
 ~~~nginx
 --prefix=/usr/local/nginx
 --http-client-body-temp-path=/var/cache/nginx/client_temp
@@ -60,7 +65,7 @@ http {
     sendfile on;
     tcp_nodelay on;
     tcp_nopush on;
-    keepalive_timeout 65;
+    keepalive_timeout 60;
     types_hash_max_size 2048;
     server_tokens off;
 
@@ -68,18 +73,25 @@ http {
     # http_header设置
     ##
 
+    server_names_hash_bucket_size 128;
+
     client_header_buffer_size 32k;
     large_client_header_buffers 4 32k;
 
-    server_names_hash_bucket_size 128;
+    client_max_body_size 8m;
+    client_body_buffer_size 128k;
 
     ##
     # Logging Settings
     ##
 
-    log_format compression '$remote_addr - $remote_user [$time_local] '
+    log_format  compression '$remote_addr - $remote_user [$time_local] '
                            '"$request" $status $bytes_sent '
                            '"$http_referer" "$http_user_agent" "$gzip_ratio"';
+
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
 
     access_log /var/log/nginx/$host-access.log compression buffer=32k flush=1d;
     error_log /var/log/nginx/$host-error.log; # debug, info, notice, warn, error, crit, alert, or emerg
@@ -149,6 +161,14 @@ http {
     # ngx_http_limit_conn_module
     # ngx_http_limit_req_module
     ##
+
+    server {
+        listen 8080;
+
+        location = /nginx_status {
+            status; # Live activity monitoring
+        }
+    }
 }
 ~~~
 
@@ -189,16 +209,18 @@ server {
         }
 
         fastcgi_connect_timeout 15s;
-        fastcgi_pass            127.0.0.1:9000;
-        #fastcgi_pass           unix:/var/run/php5-fpm.sock;
-        fastcgi_index           index.php;
+        fastcgi_send_timeout 300;
+        fastcgi_read_timeout 300;
+        fastcgi_pass 127.0.0.1:9000;
+        #fastcgi_pass unix:/var/run/php5-fpm.sock;
+        fastcgi_index index.php;
 
-        fastcgi_buffer_size       64k;
-        fastcgi_buffers           4 64k;
+        fastcgi_buffer_size 64k;
+        fastcgi_buffers 4 64k;
         fastcgi_busy_buffers_size 128k;
 
         fastcgi_intercept_errors on;
-        #fastcgi_keep_conn       on;
+        #fastcgi_keep_conn on;
 
         fastcgi_temp_file_write_size 128k;
 
@@ -244,15 +266,39 @@ http {
 
     server {
         listen 80;
+        server_name www.example.org;
+        root /data/www;
+
+        index index.html index.htm index.php;
 
         location / {
+            proxy_connect_timeout 600;
+            proxy_read_timeout 600;
+            proxy_send_timeout 600;
             proxy_pass http://backend;
 
-            health_check interval=2s fails=1 passes=5 uri=/test.php match=statusok;
+            proxy_buffer_size 32k;
+            proxy_buffers 4 32k;
+            proxy_busy_buffers_size 64k;
+
+            proxy_cache proxy_cache;
+            proxy_cache_path proxy/cache levels=1:2 keys_zone=proxy_cache:200m inactive=1d max_size=30g;
+            proxy_cache_use_stale error timeout invalid_header updating http_500 http_502 http_503 http_504 http_404;
+            proxy_cache_valid 200 304 12h;
+            proxy_cache_valid 301 302 1m;
+            proxy_cache_valid any 1m;
+
+            proxy_ignore_client_abort on;
+            proxy_ignore_headers "Cache-Control" "Expires";
+            proxy_next_upstream error timeout invalid_header http_502 http_504;
+
+            proxy_temp_path proxy/temp 1 2;
+            proxy_temp_file_write_size 1024k;
 
             proxy_http_version 1.1;
             proxy_set_header Connection "";
             proxy_set_header Accept-Encoding "";
+            proxy_set_header X-Forwarded-For $remote_addr;
             proxy_redirect http://staging.example.com/ http://$host/;
 
             # Rewrite the 'Host' header to the value in the client request,
@@ -265,6 +311,12 @@ http {
             # Replace any references inline to staging.example.com
             sub_filter http://staging.example.com/ /;
             sub_filter_once off;
+        }
+
+        location ~ .*\.(gif|jpg|jpeg|png|bmp|swf|ico|wav|mid|js|css|html)?$ {
+            proxy_cache cache_static;
+            proxy_pass http://static_server;
+            expires 1d;
         }
     }
 
