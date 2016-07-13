@@ -96,8 +96,8 @@ http {
 
     gzip_vary on;
     gzip_proxied any;
-    gzip_comp_level 6;
     gzip_buffers 16 8k;
+    gzip_comp_level 6;
     gzip_http_version 1.0;
     gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
 
@@ -121,8 +121,8 @@ http {
     # SSL Settings
     ##
 
-    ssl_protocols TLSv1 TLSv1.1 TLSv1.2; # Dropping SSLv3, ref: POODLE
-    ssl_prefer_server_ciphers on;
+    #ssl_protocols TLSv1 TLSv1.1 TLSv1.2; # Dropping SSLv3, ref: POODLE
+    #ssl_prefer_server_ciphers on;
 
     ##
     # Virtual Host Configs
@@ -136,6 +136,14 @@ http {
     # ngx_http_secure_link_module
     ##
 
+    valid_referers none blocked server_names
+                   *.example.com example.* www.example.org/galleries/
+                   ~\.google\.;
+
+    if ($invalid_referer = 0) {
+        return 403;
+    }
+
     ##
     # 限制连接
     # ngx_http_limit_conn_module
@@ -144,7 +152,7 @@ http {
 }
 ~~~
 
-### 普通 Server 配置
+### Server 配置
 
 [Server names](http://nginx.org/en/docs/http/server_names.html)
 
@@ -160,19 +168,43 @@ server {
     server_name www.example.org;
     root        /data/www;
 
+    index index.html index.htm index.php;
+
     location / {
-        index index.html index.php;
+        try_files $uri $uri/ /index.php?$query_string;
     }
 
-    location ~* \.(gif|jpg|png)$ {
-        expires 30d;
-    }
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location = /robots.txt  { access_log off; log_not_found off; }
+
+    access_log off;
 
     location ~ \.php$ {
-        fastcgi_pass  localhost:9000;
-        fastcgi_param SCRIPT_FILENAME
-                      $document_root$fastcgi_script_name;
-        include       fastcgi_params;
+        add_header 'Access-Control-Allow-Origin' '*';
+        add_header 'Access-Control-Allow-Methods' 'GET, POST, PUT, OPTIONS';
+        add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type, Token, App-Key, App-Secret, Sign-Time';
+
+        if ($request_method = 'OPTIONS') {
+            return 204;
+        }
+
+        fastcgi_connect_timeout 15s;
+        fastcgi_pass            127.0.0.1:9000;
+        #fastcgi_pass           unix:/var/run/php5-fpm.sock;
+        fastcgi_index           index.php;
+
+        fastcgi_buffer_size       64k;
+        fastcgi_buffers           4 64k;
+        fastcgi_busy_buffers_size 128k;
+
+        fastcgi_intercept_errors on;
+        #fastcgi_keep_conn       on;
+
+        fastcgi_temp_file_write_size 128k;
+
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param QUERY_STRING    $query_string;
+        include                       fastcgi_params;
     }
 }
 ~~~
