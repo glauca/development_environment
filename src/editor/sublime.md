@@ -7,23 +7,24 @@ import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.
 常用扩展
 
 1. [JsFormat](https://packagecontrol.io/packages/JsFormat)
-2. [PHPDocument](https://packagecontrol.io/packages/phpDocumentor) && [DocBlockr](https://packagecontrol.io/packages/DocBlockr)
-3. [Trimmer](https://packagecontrol.io/packages/Trimmer) && [Trailing Spaces](https://packagecontrol.io/packages/TrailingSpaces)
-4. [Alignment](https://packagecontrol.io/packages/Alignment)
-5. [Git]
-6. [ColorPicker]
-7. [Soda Theme](https://packagecontrol.io/packages/Theme%20-%20Soda) Download [colour-schemes.zip](http://buymeasoda.github.com/soda-theme/extras/colour-schemes.zip)
-8. [FileDiffs](https://packagecontrol.io/packages/FileDiffs)
-9. [phpfmt](https://packagecontrol.io/packages/phpfmt)
-10. [tag](https://packagecontrol.io/packages/Tag) 【Ctrl+Alt+F】
-11. [Markdown Preview](https://packagecontrol.io/packages/Markdown%20Preview) 【Ctrl+b】
-12. [Emmet](https://packagecontrol.io/packages/Emmet)
-13. [html-css-js prettify](https://packagecontrol.io/packages/HTML-CSS-JS%20Prettify)【需要node.js】
-14. [Http Requester](https://packagecontrol.io/packages/Http%20Requester)
-15. [Golang](https://packagecontrol.io/packages/GoSublime)
-16. [PHP Getters and Setters](https://packagecontrol.io/packages/PHP%20Getters%20and%20Setters)
-17. [PHP Companion](https://packagecontrol.io/packages/PHP%20Companion)
-18. [OmniMarkupPreviewer](https://packagecontrol.io/packages/OmniMarkupPreviewer)
+1. [PHPDocument](https://packagecontrol.io/packages/phpDocumentor) && [DocBlockr](https://packagecontrol.io/packages/DocBlockr)
+1. [Trimmer](https://packagecontrol.io/packages/Trimmer) && [Trailing Spaces](https://packagecontrol.io/packages/TrailingSpaces)
+1. [Alignment](https://packagecontrol.io/packages/Alignment)
+1. [Git]
+1. [ColorPicker]
+1. [Soda Theme](https://packagecontrol.io/packages/Theme%20-%20Soda) Download [colour-schemes.zip](http://buymeasoda.github.com/soda-theme/extras/colour-schemes.zip)
+1. [Material Theme](https://packagecontrol.io/packages/Material%20Theme)
+1. [FileDiffs](https://packagecontrol.io/packages/FileDiffs)
+1. [phpfmt](https://packagecontrol.io/packages/phpfmt)
+1. [tag](https://packagecontrol.io/packages/Tag) 【Ctrl+Alt+F】
+1. [Markdown Preview](https://packagecontrol.io/packages/Markdown%20Preview) 【Ctrl+b】
+1. [Emmet](https://packagecontrol.io/packages/Emmet)
+1. [html-css-js prettify](https://packagecontrol.io/packages/HTML-CSS-JS%20Prettify)【需要node.js】
+1. [Http Requester](https://packagecontrol.io/packages/Http%20Requester)
+1. [Golang](https://packagecontrol.io/packages/GoSublime)
+1. [PHP Getters and Setters](https://packagecontrol.io/packages/PHP%20Getters%20and%20Setters)
+1. [PHP Companion](https://packagecontrol.io/packages/PHP%20Companion)
+1. [OmniMarkupPreviewer](https://packagecontrol.io/packages/OmniMarkupPreviewer)
 
 Sublime Text 3 Settings - User
 
