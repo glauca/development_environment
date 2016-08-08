@@ -30,31 +30,41 @@ Sublime Text 3 Settings - User
 
 ```bash
 {
-	"color_scheme": "Cache/Theme - Soda/Monokai Soda.tmTheme",
+	"always_show_minimap_viewport": true,
+	"bold_folder_labels": true,
+	"color_scheme": "Packages/Material Theme/schemes/Material-Theme.tmTheme",
 	"default_line_ending": "unix",
 	"file_exclude_patterns":
 	[
-		"*.gitignore",
-		"*.gitattributes",
-		"*.gitkeep"
 	],
 	"font_size": 9,
 	"ignored_packages":
 	[
 		"Vintage"
 	],
+	"indent_guide_options":
+	[
+		"draw_normal",
+		"draw_active"
+	],
+	"line_padding_bottom": 1,
+	"line_padding_top": 1,
+	"material_theme_contrast_mode": true,
+	"overlay_scroll_bars": "enabled",
+	"php_bin": "E:\\software\\php-5.6.19-Win32-VC11-x64\\php.exe",
 	"rulers":
 	[
 		100
 	],
 	"soda_classic_tabs": true,
 	"soda_folder_icons": true,
-	"theme": "Soda Dark 3.sublime-theme",
+	"theme": "Material-Theme.sublime-theme",
 	"translate_tabs_to_spaces": true,
 	"trim_trailing_white_space_on_save": true,
 	"word_wrap": true,
 	"wrap_width": 100
 }
+
 ```
 
 Sublime Text 3 Key Bindings - User
