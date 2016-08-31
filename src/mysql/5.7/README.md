@@ -1,5 +1,7 @@
 ## [MySQL 5.7 Reference Manual](http://dev.mysql.com/doc/refman/5.7/en/)
 
+[my.cnf](./my.cnf.md)
+
 1. [General Information](./introduction/introduction.md)
 1. [Installing and Upgrading MySQL](./2/README.md)
 1. Using MySQL as a Document Store
