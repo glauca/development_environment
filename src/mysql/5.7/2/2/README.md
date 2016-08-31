@@ -27,8 +27,8 @@ shell> cd /usr/local
 shell> tar zxvf /path/to/mysql-VERSION-OS.tar.gz
 shell> ln -s full-path-to-mysql-VERSION-OS mysql
 shell> cd mysql
-shell> mkdir mysql-files
-shell> chmod 750 mysql-files
+shell> mkdir mysql-files data
+shell> chmod 750 mysql-files data
 shell> chown -R mysql .
 shell> chgrp -R mysql .
 shell> bin/mysql_install_db --user=mysql    # Before MySQL 5.7.6
@@ -39,6 +39,10 @@ shell> chown -R mysql data mysql-files
 shell> bin/mysqld_safe --user=mysql &
 # Next command is optional
 shell> cp support-files/mysql.server /etc/init.d/mysql.server
+
+shell> mysql -u root -p # --initialize
+shell> mysql -u root --skip-password # --initialize-insecure
+mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'new_password';
 ~~~
 
 > 使用 **useradd** 命令的 -r 和 -s */bin/false* 选项创建一个不用登陆的账号。如果 **useradd** 不支持这些选项，可以省略。
