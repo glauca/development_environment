@@ -1,6 +1,11 @@
 
 my.cnf 读取顺序
 
+1. /etc/my.cnf
+1. /etc/mysql/my.cnf
+1. /usr/local/mysql/etc/my.cnf
+1. ~/.my.cnf
+
 ~~~mysql
 [client]
 port = 3306
