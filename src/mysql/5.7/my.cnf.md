@@ -1,5 +1,5 @@
 
-my.cnf 读取顺序
+[my.cnf 读取顺序](http://dev.mysql.com/doc/refman/5.7/en/option-files.html)
 
 1. /etc/my.cnf
 1. /etc/mysql/my.cnf
