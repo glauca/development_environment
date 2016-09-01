@@ -2,7 +2,7 @@
 
 1. [mysql Options](./1.md)
 1. mysql Commands
-1. mysql Logging
+1. [mysql Logging](./3.md)
 1. mysql Server-Side Help
 1. Executing SQL Statements from a Text File
 1. mysql Tips
