@@ -11,6 +11,8 @@
 port = 3306
 socket = /usr/local/mysql/data/mysqld.sock
 
+[mysql.server]
+
 [mysqld_safe]
 socket = /usr/local/mysql/data/mysqld.sock
 nice = 0

@@ -2,5 +2,5 @@
 
 1. [mysqld — The MySQL Server](./1.md)
 1. [mysqld_safe — MySQL Server Startup Script](./2.md)
-1. mysql.server — MySQL Server Startup Script
+1. [mysql.server — MySQL Server Startup Script](./3.md)
 1. mysqld_multi — Manage Multiple MySQL Servers
