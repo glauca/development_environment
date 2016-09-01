@@ -8,6 +8,8 @@
 
 ~~~mysql
 [client]
+default-character-set = utf8
+pager = more
 port = 3306
 socket = /usr/local/mysql/data/mysqld.sock
 
