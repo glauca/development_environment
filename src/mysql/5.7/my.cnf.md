@@ -8,6 +8,7 @@
 
 ~~~mysql
 [client]
+pager = more
 port = 3306
 socket = /usr/local/mysql/data/mysqld.sock
 
