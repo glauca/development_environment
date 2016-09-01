@@ -9,17 +9,24 @@
 ~~~mysql
 [client]
 port = 3306
-socket = /tmp/mysqld.sock
+socket = /usr/local/mysql/data/mysqld.sock
 
-[mysqld]
-datadir = /usr/local/mysql/data
-socket = /tmp/mysqld.sock
-user = mysql
-# Disabling symbolic-links is recommended to prevent assorted security risks
-symbolic-links=0
+[mysql.server]
 
 [mysqld_safe]
-socket = /tmp/mysqld.sock
-log-error = /usr/local/mysql/mysqld.log
-pid-file = /tmp/mysqld.pid
+socket = /usr/local/mysql/data/mysqld.sock
+nice = 0
+
+[mysqld]
+user = mysql
+pid-file = /usr/local/mysql/data/mysqld.pid
+socket = /usr/local/mysql/data/mysqld.sock
+basedir = /usr/local/mysql
+datadir = /usr/local/mysql/data
+tmpdir = /tmp
+
+log-error = /usr/local/mysql/data/mysqld.err
+
+# Disabling symbolic-links is recommended to prevent assorted security risks
+symbolic-links=0
 ~~~
