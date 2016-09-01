@@ -6,7 +6,7 @@
 1. [Installing and Upgrading MySQL](./2/README.md)
 1. Using MySQL as a Document Store
 1. [Tutorial](./4/README.md)
-1. MySQL Programs
+1. [MySQL Programs](./5/README.md)
 1. MySQL Server Administration
 1. Security
 1. Backup and Recovery
