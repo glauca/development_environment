@@ -15,6 +15,8 @@ socket = /usr/local/mysql/data/mysqld.sock
 
 [mysqladmin]
 
+[mysqlimport]
+
 [mysql.server]
 
 [mysqld_safe]
