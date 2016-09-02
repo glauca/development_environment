@@ -5,6 +5,6 @@
 1. [mysql Logging](./3.md)
 1. mysql Server-Side Help
 1. Executing SQL Statements from a Text File
-1. mysql Tips
+1. [mysql Tips](./6.md)
 
 If you have problems due to insufficient memory for large result sets, use the --quick option.
