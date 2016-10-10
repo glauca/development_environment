@@ -9,4 +9,7 @@
 	name = bob
 [user]
 	email = kavin@126.com
+[core]
+    autocrlf = false
+    safecrlf = true
 ```
