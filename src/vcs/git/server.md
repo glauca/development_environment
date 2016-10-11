@@ -82,7 +82,7 @@ $ sudo chsh git  # and enter the path to git-shell, usually: /usr/bin/git-shell
 ### 新建仓库并推送到远程
 
 ~~~bash
-create a new repo
+# create a new repo
 
 $ git init
 $ git add ./
@@ -90,7 +90,7 @@ $ git commit -m 'commit info'
 $ git remote add origin repo
 $ git push -u origin master
 
-or push an existing repository
+# or push an existing repository
 
 $ git remote add origin repo
 $ git push -u origin master
