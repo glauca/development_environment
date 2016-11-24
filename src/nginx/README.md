@@ -8,35 +8,33 @@ yum -y install zlib zlib-devel openssl openssl-devel pcre pcre-devel
 ~~~
 
 ~~~nginx
---prefix=/usr/local/nginx
---http-client-body-temp-path=/var/cache/nginx/client_temp
---http-proxy-temp-path=/var/cache/nginx/proxy_temp
---http-fastcgi-temp-path=/var/cache/nginx/fastcgi_temp
---http-uwsgi-temp-path=/var/cache/nginx/uwsgi_temp
---http-scgi-temp-path=/var/cache/nginx/scgi_temp
---with-http_ssl_module
---with-http_realip_module
---with-http_addition_module
---with-http_sub_module
---with-http_dav_module
---with-http_flv_module
---with-http_mp4_module
---with-http_gunzip_module
---with-http_gzip_static_module
---with-http_random_index_module
---with-http_secure_link_module
---with-http_stub_status_module
---with-http_auth_request_module
---with-http_image_filter_module
---with-threads
---with-stream
---with-stream_ssl_module
---with-http_slice_module
---with-mail
---with-mail_ssl_module
---with-file-aio
---with-http_v2_module
---with-ipv6
+./configure --prefix=/usr/local/nginx \
+--http-client-body-temp-path=/var/cache/nginx/client_temp \
+--http-proxy-temp-path=/var/cache/nginx/proxy_temp \
+--http-fastcgi-temp-path=/var/cache/nginx/fastcgi_temp \
+--with-http_ssl_module \
+--with-http_realip_module \
+--with-http_addition_module \
+--with-http_sub_module \
+--with-http_dav_module \
+--with-http_flv_module \
+--with-http_mp4_module \
+--with-http_gunzip_module \
+--with-http_gzip_static_module \
+--with-http_random_index_module \
+--with-http_secure_link_module \
+--with-http_stub_status_module \
+--with-http_auth_request_module \
+--with-http_image_filter_module \
+--with-threads \
+--with-stream \
+--with-stream_ssl_module \
+--with-http_slice_module \
+--with-mail \
+--with-mail_ssl_module \
+--with-file-aio \
+--with-http_v2_module \
+--with-ipv6 \
 --with-pcre-jit
 ~~~
 
@@ -93,8 +91,8 @@ http {
                       '$status $body_bytes_sent "$http_referer" '
                       '"$http_user_agent" "$http_x_forwarded_for"';
 
-    access_log /var/log/nginx/$host-access.log compression buffer=32k flush=1d;
-    error_log /var/log/nginx/$host-error.log; # debug, info, notice, warn, error, crit, alert, or emerg
+    access_log logs/$host-access.log compression buffer=32k flush=1d;
+    error_log logs/$host-error.log; # debug, info, notice, warn, error, crit, alert, or emerg
 
     error_page 404             /404.html;
     error_page 500 502 503 504 /50x.html;
@@ -140,7 +138,7 @@ http {
     # Virtual Host Configs
     ##
 
-    include /etc/nginx/conf.d/sites-available/*;
+    include conf/sites-available/*;
 
     ##
     # 防盗链
