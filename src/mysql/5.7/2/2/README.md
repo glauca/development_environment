@@ -38,7 +38,8 @@ shell> chown -R root .
 shell> chown -R mysql data mysql-files
 shell> bin/mysqld_safe --user=mysql &
 # Next command is optional
-shell> cp support-files/mysql.server /etc/init.d/mysql.server
+shell> cp support-files/mysql.server /etc/init.d/mysql
+shell> export PATH=$PATH:/usr/local/mysql/bin
 
 shell> mysql -u root -p # --initialize
 shell> mysql -u root --skip-password # --initialize-insecure
