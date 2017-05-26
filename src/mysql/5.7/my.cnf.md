@@ -41,4 +41,7 @@ log-error = /usr/local/mysql/data/mysqld.err
 
 # Disabling symbolic-links is recommended to prevent assorted security risks
 symbolic-links=0
+
+# 不使用 DNS
+skip-name-resolve
 ~~~
