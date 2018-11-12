@@ -15,7 +15,6 @@ import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.
 1. [Material Theme](https://packagecontrol.io/packages/Material Theme)
 1. [FileDiffs](https://packagecontrol.io/packages/FileDiffs)
 1. [phpfmt](https://packagecontrol.io/packages/phpfmt)
-1. [tag](https://packagecontrol.io/packages/Tag) 【Ctrl+Alt+F】
 1. [Markdown Preview](https://packagecontrol.io/packages/Markdown Preview) 【Ctrl+b】
 1. [Emmet](https://packagecontrol.io/packages/Emmet)
 1. [html-css-js prettify](https://packagecontrol.io/packages/html-css-js prettify)【需要node.js】
@@ -32,7 +31,7 @@ Sublime Text 3 Settings - User
 {
 	"always_show_minimap_viewport": true,
 	"bold_folder_labels": true,
-	"color_scheme": "Packages/Material Theme/schemes/Material-Theme.tmTheme",
+	"color_scheme": "Packages/Material Theme/schemes/Material-Theme-Palenight.tmTheme",
 	"default_line_ending": "unix",
 	"file_exclude_patterns":
 	[
@@ -51,20 +50,18 @@ Sublime Text 3 Settings - User
 	"line_padding_top": 1,
 	"material_theme_contrast_mode": true,
 	"overlay_scroll_bars": "enabled",
-	"php_bin": "E:\\software\\php-5.6.19-Win32-VC11-x64\\php.exe",
 	"rulers":
 	[
 		100
 	],
 	"soda_classic_tabs": true,
 	"soda_folder_icons": true,
-	"theme": "Material-Theme.sublime-theme",
+	"theme": "Material-Theme-Palenight.sublime-theme",
 	"translate_tabs_to_spaces": true,
 	"trim_trailing_white_space_on_save": true,
 	"word_wrap": true,
 	"wrap_width": 100
 }
-
 ```
 
 Sublime Text 3 Key Bindings - User
