@@ -107,6 +107,7 @@ $ git log -1 --pretty=fuller
 $ git log -1 --pretty=format:"%h - %an, %ar : %s"
 $ git log -10 --date=format:%c --pretty=format:"%h - %an, %ar %cd %s"
 $ git log -10 --date=format:%c --pretty=format:"%h - %an, %ar %cd %s" --graph
+$ git log -1 --graph --decorate --shortstat --raw --pretty=medium --dirstat
 
 查询条件限制
 $ git log --since=2.weeks
