@@ -41,7 +41,7 @@ Package Control [Setting User]
 
 Sublime Text 3 Settings - User
 
-```bash
+```json
 {
 	"always_show_minimap_viewport": true,
 	"bold_folder_labels": true,
@@ -81,7 +81,7 @@ Sublime Text 3 Settings - User
 
 Sublime Text 3 Key Bindings - User
 
-```bash
+```json
 [
     { "keys": ["f6"], "command": "find_use" },
     { "keys": ["f7"], "command": "expand_fqcn" }
@@ -90,7 +90,7 @@ Sublime Text 3 Key Bindings - User
 
 phpfmt Settings - User
 
-```bash
+```json
 {
 	"debug": true,
 	"enable_auto_align": true,
@@ -112,7 +112,7 @@ phpfmt Settings - User
 
 Golang Settings - User
 
-```bash
+```json
 {
     "env": {
         "GOPATH": "F:/git/golang",
@@ -123,7 +123,7 @@ Golang Settings - User
 
 OmniMarkupPreviewer
 
-```bash
+```json
 {
     "renderer_options-MarkdownRenderer": {
         "extensions": ["tables", "fenced_code", "codehilite"]
