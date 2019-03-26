@@ -2,7 +2,21 @@
 
 ### 下载 [Windows 64 bit Portable Version](https://download.sublimetext.com/Sublime%20Text%20Build%203103%20x64.zip) ###
 
+50.116.34.243 　　 sublime.wbond.net
+
 import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())
+
+Package Control [Setting User]
+
+```json
+{
+	"channels":
+	[
+		"http://www.miaoqiyuan.cn/products/proxy.php/https://packagecontrol.io/channel_v3.json"
+	],
+}
+```
+
 
 常用扩展
 
@@ -60,7 +74,8 @@ Sublime Text 3 Settings - User
 	"translate_tabs_to_spaces": true,
 	"trim_trailing_white_space_on_save": true,
 	"word_wrap": true,
-	"wrap_width": 100
+	"wrap_width": 100,
+	"folder_exclude_patterns": [".svn", ".git", ".hg", "CVS", "node_modules"]
 }
 ```
 

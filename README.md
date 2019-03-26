@@ -7,7 +7,8 @@
 
 ### PHP 开发环境配置
 
-#### [Vagrant](./src/php/environment.md)
+#### [Vagrant](./src/php/vagrant.md)
+#### [Vagrant Mac](./src/php/vagrant_mac.md)
 
 ### PHP Framework
 
